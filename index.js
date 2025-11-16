@@ -1,4 +1,3 @@
-
 const http = require('http');
 const fs = require('fs');
 const path = require('path');
@@ -26,11 +25,16 @@ const server = http.createServer((req, res) => {
       res.end(data);
     });
 
-  // Optional: Add a login route (if you want later)
+  // Login test route
   } else if (req.url === '/login-test') {
     const result = login("admin", "1234");
     res.writeHead(200, { "Content-Type": "text/plain" });
     res.end(result);
+
+  // ⭐ NEW: About route
+  } else if (req.url === '/about') {
+    res.writeHead(200, { "Content-Type": "text/plain" });
+    res.end("About Page");
 
   } else {
     res.writeHead(404, { 'Content-Type': 'text/plain' });
@@ -41,3 +45,4 @@ const server = http.createServer((req, res) => {
 server.listen(PORT, () => {
   console.log(`✅ Server is running at http://localhost:${PORT}`);
 });
+
